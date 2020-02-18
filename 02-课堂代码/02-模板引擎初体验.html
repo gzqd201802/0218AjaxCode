@@ -33,10 +33,17 @@
                 skill: '乐不思蜀',
             }
         }
+
         // 4. 调用模板
         const htmlStr = template('t1', obj);
 
         console.log(htmlStr);
+
+        // 模板引擎使用重点：
+        //  1. 定义模板使用 script 标签，必须添加 id 属性 和 type 属性
+        //  2. 模板 type="text/html" 书写后，html 提示就有了。
+        //  3. 调用模板引擎，template('id名', 数据)，
+        //  4. 最终返回是字符数据，是被替换后的 html 字符串
         
     </script>
 </body>
