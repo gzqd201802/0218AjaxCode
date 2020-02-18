@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+
+    </ul>
+    <!-- 1. 导入模板引擎 -->
+    <script src="./lib/template-web.js"></script>
+    <!-- 2. 准备模板 -->
+    <script id="t1" type="text/html">
+
+        <li>名字：{{ name }}</li>
+        <li>技能：{{ skill }}</li>
+        <li>年龄：{{ age }}</li>
+
+        {{ if age>=60 }}
+            <li>已经退休</li>
+        {{ /if }}
+
+    </script>
+    <script>
+        // 3. 准备数据
+        const obj = {
+            name: '刘备666',
+            skill: '暴摔儿子66',
+            age: 18
+        }
+
+        // 4. 调用模板
+        const htmlStr = template('t1', obj);
+
+        // 5. 渲染到页面中
+        document.querySelector('ul').innerHTML = htmlStr;
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <script src="./lib/jquery-1.12.4.min.js"></script>
+    <script>
+        // 获取 xml 格式菜单
+        // 请求地址：https://autumnfish.cn/api/food.xml
+        // 请求方法：get
+        // 请求参数：无
+
+        // 1. new 一个 ajax 对象
+        const xhr = new XMLHttpRequest();
+        // 2. open()
+        xhr.open('get','https://autumnfish.cn/api/food.xml');
+        // 3. send()
+        xhr.send();
+        // 4. 注册回调函数
+        xhr.onload = function(){
+            console.log(xhr.responseText);
+            // const obj = JSON.parse(xhr.responseText);
+            // console.log(obj);
+            // console.log($(xhr.responseText));
+            // console.log($(xhr.responseText).find('food'));
+            // console.log($(xhr.responseText).find('food').eq(0).children('name').text());
+            const $foods = $(xhr.responseText).find('food');
+
+            let htmlStr = '';
+            // 有多个 food ，通过 jq 的 each 方法遍历
+            $foods.each(function(index,item){
+                htmlStr += `
+                    <ul>
+                        <li>食物：${ $(item).children('name').text() }</li>
+                        <li>价格：${ $(item).children('price').text() }</li>
+                        <li>描述：${ $(item).children('description').text() }</li>
+                        <li>热量：${ $(item).children('calories').text() }</li>
+                    </ul>
+                `;
+            });
+
+            $('.box').html(htmlStr);
+
+
+        }
+
+    </script>
+</body>
+</html>
