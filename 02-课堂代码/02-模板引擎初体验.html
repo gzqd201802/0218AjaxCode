@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <!-- 1. 导入模板引擎 -->
+    <script src="./lib/template-web.js"></script>
+
+    <!-- 2. 定义模板 -->
+    <script id="t1" type="text/html">
+        <ol>
+            <li>名字：{{ name }}</li>
+            <li>技能：暴摔儿子</li>
+            <ol>
+                <li>儿子：刘禅</li>
+                <li>技能：乐不思蜀</li>
+            </ol>
+        </ol>
+    </script>
+
+    <script>
+        // 3. 准备数据 - 数据一般是从后台来的
+        const obj = {
+            name: '刘备666',
+            skill: '暴摔儿子',
+            son:{
+                name: '刘禅',
+                skill: '乐不思蜀',
+            }
+        }
+        // 4. 调用模板
+        const htmlStr = template('t1', obj);
+
+        console.log(htmlStr);
+        
+    </script>
+</body>
+</html>
