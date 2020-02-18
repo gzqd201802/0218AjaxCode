@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 目标：封装ajax的get请求 ！！！
+        //  获取多条随机笑话
+        //    随机获取笑话的接口
+        //    请求地址：https://autumnfish.cn/api/joke/list
+        //    请求方法：get
+        //    请求参数：num
+
+
+        // 参数说明
+        // url ：请求地址
+        // data ：请求参数
+        // fn： 函数，在数据获取完毕后，调用用户传过来的函数。!!!!
+        function get(url, data, fn) {
+            // 1. new 创建ajax对象 小黄人对象
+            const xhr = new XMLHttpRequest();
+            // 2. open 设置 请求的方法 和请求的地址
+            xhr.open('get', `${url}?${data}`);
+            // 3. send 发送请求
+            xhr.send();
+            // 4. onload 注册回调函数
+            xhr.onload = function () {
+                // console.log(xhr.responseText);
+                // 把 xhr.responseText 作为函数调用的实参
+                debugger;
+                fn(xhr.responseText);
+            }
+        }
+
+        debugger;
+        // JS 中，函数其实就是一种数据，作为参数传递，其实就是传递了函数的内存地址
+        get('https://autumnfish.cn/api/joke/list', 'num=5', function (res) {
+            console.log('函数调用时，传递的实参数据', res);
+        });
+
+        // 小结：
+        //     其实 ajax 写法都差不多，主要是以下几部分的变化:
+        //      1. 请求方式
+        //      2. 请求地址
+        //      3. 请求参数
+        //      4. 回调函数内部的业务代码！！！！！！
+        //  封装主要就是考虑以上 4 点。
+
+
+    </script>
+</body>
+
+</html>
