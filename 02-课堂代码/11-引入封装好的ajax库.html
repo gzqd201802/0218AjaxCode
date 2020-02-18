@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./lib/heima.js"></script>
+    <script>
+        //  获取多条随机笑话
+        //    随机获取笑话的接口
+        //    请求地址：https://autumnfish.cn/api/joke/list
+        //    请求方法：get
+        //    请求参数：num
+
+        // 用户验证 - 验证用户名是否可用
+        // 请求地址：https://autumnfish.cn/api/user/check
+        // 请求方法：post
+        // 请求参数：username
+
+        // 测试 get 的封装
+        heima.get('https://autumnfish.cn/api/joke/list',`num=${2}`,function(res){
+            console.log('get成功',res);
+        });
+
+        // 测试 post 的封装
+        heima.post('https://autumnfish.cn/api/user/check',`username=小明`,function(res){
+            console.log('post成功',res);
+        });
+
+
+
+
+
+    </script>
+</body>
+
+</html>
