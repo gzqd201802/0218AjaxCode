@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box li{
+            background-color: pink;
+            margin: 5px 0;
+        }   
+    </style>
+</head>
+<body>
+    <h1>模板引擎渲染结果</h1>
+    <div class="box"></div>
+
+    <!-- 1. 导入模板引擎 -->
+    <script src="./lib/template-web.js"></script>
+
+    <!-- 2. 定义模板 -->
+    <script id="t1" type="text/html">
+        <ul>
+            <li>名字：{{ name }}</li>
+            <li>技能：{{ skill }}</li>
+            <ul>
+                <li>儿子：{{ son.name }}</li>
+                <li>技能：{{ son.skill }}</li>
+            </ul>
+        </ul>
+    </script>
+
+    <script>
+        // 3. 准备数据 - 数据一般是从后台来的
+        const obj = {
+            name: '刘备666',
+            skill: '暴摔儿子66',
+            son:{
+                name: '刘禅666',
+                skill: '乐不思蜀666',
+            }
+        }
+
+        // 4. 调用模板
+        const htmlStr = template('t1', obj);
+
+        console.log(htmlStr);
+
+        document.querySelector('.box').innerHTML = htmlStr;
+
+        
+    </script>
+</body>
+</html>
